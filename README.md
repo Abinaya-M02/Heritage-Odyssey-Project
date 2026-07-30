@@ -4,7 +4,7 @@ An Indian Heritage Information System built using **Python, Flask, HTML, CSS, Ja
 
 ## 📖 About
 
-Heritage Odyssey Project is a web application that helps users explore and discover India's rich cultural heritage — including temples, palaces, forts, tombs, valleys, waterfalls, and wildlife sanctuaries.
+Heritage Odyssey Project is a web application that helps users explore and discover India's rich cultural heritage — including temples, palaces, forts, tombs, valleys, waterfalls, and wildlife sanctuaries etc,.
 
 ## ✨ Features
 
