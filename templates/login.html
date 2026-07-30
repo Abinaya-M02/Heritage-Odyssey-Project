@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+
+
+<title>Login</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+
+    background-image:url("{{ url_for('static', filename='nature.png') }}");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+.box{
+    width:380px;
+    margin:100px auto;
+    padding:30px;
+
+    background:rgba(255,255,255,0.85);
+
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+
+    text-align:center;
+}
+
+.welcome-title{
+    font-family:'Marcellus', serif;
+    font-size:38px;
+    color:rgb(35, 27, 27);
+    letter-spacing:2px;
+    margin-bottom:20px;
+    margin-top: 5px;
+    text-align:center;
+}
+
+.input-box{
+    position:relative;
+    margin:15px 0;
+}
+
+.input-box input{
+    width:100%;
+    padding:12px 45px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:16px;
+    box-sizing:border-box;
+}
+
+.input-box .fa-envelope,
+.input-box .fa-lock{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:gray;
+}
+
+.toggle-password{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:gray;
+}
+
+button{
+            width:100%;
+            padding:12px;
+            margin-top:15px;
+            border:none;
+            border-radius:8px;
+            background:#36d8e1;
+            color:rgb(9, 5, 5);
+            font-size:18px;
+            cursor:pointer;
+        }
+a{
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1 class="welcome-title">Welcome</h1>
+
+<form method="POST">
+
+    <div class="input-box">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email"
+               name="email"
+               placeholder="Enter Email"
+               required>
+    </div>
+
+    <div class="input-box">
+        <i class="fa-solid fa-lock"></i>
+
+        <input type="password"
+               id="password"
+               name="password"
+               placeholder="Enter Password"
+               required>
+
+        <i class="fa-solid fa-eye toggle-password"
+           onclick="showPassword()"></i>
+    </div>
+
+    <button type="submit"><b>Login</b></button>
+
+</form>
+
+<p>
+Don't have an account?
+<a href="/"><b>Sign Up</b></a>
+</p>
+
+</div>
+
+<script>
+function showPassword(){
+
+    var x = document.getElementById("password");
+
+    if(x.type === "password"){
+        x.type = "text";
+    }else{
+        x.type = "password";
+    }
+}
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Results - Heritage Odyssey</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+header{
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.logo img{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+}
+
+.logo h1{
+    color:#4b2e20;
+    font-size:32px;
+    font-family:'Cinzel', serif;
+}
+
+.search-box{
+    width:420px;
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    padding:15px 20px 15px 55px;
+    border-radius:35px;
+    border:2px solid #8B5E3C;
+    font-size:18px;
+    outline:none;
+}
+
+.search-box span{
+    position:absolute;
+    left:20px;
+    top:13px;
+    font-size:24px;
+}
+
+.back-link,
+.back-link:link,
+.back-link:visited,
+.back-link:hover,
+.back-link:active,
+.back-link:focus{
+    text-decoration:none !important;
+    outline:none;
+}
+
+.back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin:25px 40px 0;
+    padding:10px 22px;
+    background:#fff;
+    color:#8B5E3C;
+    border:2px solid #8B5E3C;
+    border-radius:30px;
+    font-weight:600;
+    font-size:14.5px;
+    transition:.25s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.back-link:hover{
+    background:#8B5E3C;
+    color:#fff;
+    transform:translateX(-4px);
+}
+
+
+.results-section{
+    width:90%;
+    margin:30px auto 60px;
+}
+
+.results-section h2{
+    color:#4b2e20;
+    font-size:30px;
+    margin-bottom:25px;
+}
+
+.results-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:25px;
+}
+
+.place-card{
+    width:260px;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    transition:.3s;
+    text-decoration:none;
+    display:block;
+    color:inherit;
+}
+
+.place-card:hover{
+    transform:translateY(-8px);
+}
+
+.place-card .card-body{
+    padding:18px;
+}
+
+.place-card h3{
+    color:#4B2E20;
+    margin-bottom:8px;
+}
+
+.place-card p{
+    color:#666;
+    font-size:14px;
+}
+
+.no-results{
+    text-align:center;
+    margin-top:60px;
+    color:#666;
+    font-size:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='logo.png') }}">
+        <h1>Heritage Odyssey</h1>
+    </div>
+
+    <form class="search-box" action="/search" method="GET">
+        <span>🔍</span>
+        <input type="text" name="q" placeholder="Search Heritage Place" value="{{ query }}" required>
+    </form>
+</header>
+
+<a href="/home" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+<section class="results-section">
+    <h2>Search results for "{{ query }}"</h2>
+
+    {% if results %}
+    <div class="results-grid">
+        {% for place in results %}
+        <a href="/place/{{ place.id }}" class="place-card">
+            <div class="card-body">
+                <h3>{{ place.place_name }}</h3>
+                <p>{{ place.state }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-results">No heritage places found matching "{{ query }}". Try a different search term.</p>
+    {% endif %}
+</section>
+
+</body>
+</html>

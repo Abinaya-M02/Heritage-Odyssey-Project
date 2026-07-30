@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ place.place_name }} | Heritage Odyssey</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<style>
+
+/* ======================================
+        RESET & BASE
+====================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#F8F5F0;
+    color:#3A2E26;
+    line-height:1.8;
+}
+
+:focus-visible{
+    outline:2px solid #D4AF37;
+    outline-offset:3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+}
+
+/* ======================================
+        HEADER
+====================================== */
+
+header{
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    padding:16px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#3E2723;
+    z-index:1000;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo i{
+    color:#D4AF37;
+    font-size:26px;
+}
+
+.logo img{
+    height:42px;
+    width:auto;
+    object-fit:contain;
+}
+
+.logo h2{
+    color:#fff;
+    font-family:'Cinzel', serif;
+    font-size:22px;
+    font-weight:600;
+    letter-spacing:0.5px;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#E8DFD5;
+    font-weight:500;
+    font-size:14.5px;
+    transition:.25s;
+}
+
+nav a:hover{
+    color:#D4AF37;
+}
+
+.back-btn{
+    background:#D4AF37;
+    color:#2A211C !important;
+    padding:9px 18px;
+    border-radius:30px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600 !important;
+}
+
+.back-btn:hover{
+    background:#E8C158;
+    color:#2A211C !important;
+}
+
+/* ======================================
+        SECTION WAYFINDER (signature)
+====================================== */
+
+.wayfinder{
+    position:sticky;
+    top:64px;
+    z-index:900;
+    background:rgba(248,245,240,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid #E7DDCE;
+    padding:12px 6%;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+.wayfinder::-webkit-scrollbar{ display:none; }
+
+.wayfinder a{
+    flex-shrink:0;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:500;
+    color:#7A6A5C;
+    padding:8px 16px;
+    border-radius:20px;
+    border:1px solid transparent;
+    transition:.2s;
+    white-space:nowrap;
+}
+
+.wayfinder a:hover{
+    color:#5D4037;
+    border-color:#E7DDCE;
+}
+
+.wayfinder a.active{
+    background:#5D4037;
+    color:#fff;
+}
+
+/* ======================================
+        HERO
+====================================== */
+
+.hero{
+    margin-top:64px;
+    background:radial-gradient(ellipse at top, #6B4A34 0%, #3E2723 78%);
+    color:#fff;
+    text-align:center;
+    padding:70px 20px 60px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+        repeating-linear-gradient(90deg, rgba(212,175,55,0.06) 0 2px, transparent 2px 48px);
+    pointer-events:none;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+/* ornamental torana arch framing the icon */
+.arch-frame{
+    width:150px;
+    height:130px;
+    margin:0 auto 22px;
+    position:relative;
+}
+
+.arch-frame svg{
+    width:100%;
+    height:100%;
+}
+
+.hero-icon{
+    position:absolute;
+    top:38px; left:50%;
+    transform:translateX(-50%);
+    width:66px;
+    height:66px;
+    background:#fff;
+    color:#8B5E3C;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.hero h1{
+    font-family:'Cinzel', serif;
+    font-weight:700;
+    font-size:44px;
+    letter-spacing:0.5px;
+    margin-bottom:14px;
+}
+
+.hero .loc{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:19px;
+    color:#E8DFD5;
+}
+
+.hero .loc i{ color:#D4AF37; margin-right:6px; }
+
+.unesco-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:24px;
+    padding:11px 24px;
+    background:linear-gradient(135deg,#D4AF37,#B8860B);
+    color:#2A211C;
+    border-radius:40px;
+    font-weight:600;
+    font-size:14px;
+}
+
+/* ======================================
+        OVERVIEW STRIP
+====================================== */
+
+.overview{
+    width:90%;
+    max-width:1100px;
+    margin:-32px auto 50px;
+    position:relative;
+    z-index:3;
+}
+
+.overview-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:2px;
+    background:#E7DDCE;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(62,39,35,.15);
+}
+
+.overview-card{
+    background:#fff;
+    padding:26px 22px;
+    text-align:center;
+}
+
+.overview-card i{
+    font-size:24px;
+    color:#D4AF37;
+    margin-bottom:10px;
+    display:block;
+}
+
+.overview-card h3{
+    color:#5D4037;
+    font-family:'Cinzel', serif;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+}
+
+.overview-card p{
+    color:#5A5048;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* ======================================
+        CONTAINER & SECTIONS
+====================================== */
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.section{
+    margin:64px 0;
+    scroll-margin-top:140px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:26px;
+}
+
+.section-title .num-mark{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:2px solid #D4AF37;
+    color:#5D4037;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:17px;
+    flex-shrink:0;
+}
+
+.section-title h2{
+    color:#5D4037;
+    font-family:'Cinzel', serif;
+    font-size:26px;
+    font-weight:600;
+}
+
+/* content card */
+
+.content-card{
+    background:#fff;
+    padding:36px 38px;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(62,39,35,.08);
+    position:relative;
+}
+
+.content-card::before{
+    content:"“";
+    position:absolute;
+    top:8px; left:20px;
+    font-family:'Playfair Display', serif;
+    font-size:70px;
+    color:#F1E4C8;
+    line-height:1;
+    z-index:0;
+}
+
+.content-card p{
+    position:relative;
+    z-index:1;
+    color:#4A4038;
+    text-align:justify;
+    line-height:2;
+    white-space:pre-line;
+    font-size:15px;
+}
+
+/* unesco card */
+
+.unesco-card{
+    background:linear-gradient(135deg,#FFF8DC,#FDF0BE);
+    border-left:6px solid #D4AF37;
+    border-radius:16px;
+    padding:32px 36px;
+    box-shadow:0 8px 25px rgba(62,39,35,.08);
+}
+
+.unesco-header{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:16px;
+}
+
+.unesco-header i{ color:#B8860B; font-size:28px; }
+.unesco-header h3{ color:#5D4037; font-family:'Cinzel', serif; font-size:18px; }
+
+.unesco-card p{
+    color:#4A4038;
+    text-align:justify;
+    line-height:2;
+    white-space:pre-line;
+    font-size:14.5px;
+}
+
+/* visitor / travel grid */
+
+.visitor-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:22px;
+}
+
+.visitor-card{
+    background:#fff;
+    border-radius:16px;
+    padding:28px 30px;
+    box-shadow:0 8px 25px rgba(62,39,35,.08);
+    border-top:3px solid #D4AF37;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    height:100%;
+}
+
+.visitor-card i{ font-size:26px; color:#8B5E3C; margin-bottom:12px; display:block; }
+.visitor-card h3{ color:#5D4037; font-family:'Cinzel', serif; font-size:15px; margin-bottom:10px; letter-spacing:0.02em; }
+.visitor-card h4{ color:#B8860B; margin:10px 0; font-size:19px; font-family:'Playfair Display', serif; font-style:italic; }
+.visitor-card h5{ margin:14px 0 8px; color:#6B5D50; font-size:13px; text-transform:uppercase; letter-spacing:0.05em; }
+
+/* visiting information — simple elegant panel */
+
+.info-panel{
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(62,39,35,.08);
+    overflow:hidden;
+}
+
+.info-row{
+    display:flex;
+    gap:22px;
+    align-items:flex-start;
+    padding:30px 34px;
+}
+
+.info-row + .info-row{
+    border-top:1px solid #EFE8DD;
+}
+
+.info-icon{
+    width:46px;
+    height:46px;
+    min-width:46px;
+    border-radius:50%;
+    background:#FBF1DD;
+    color:#B8860B;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+}
+
+.info-row h3{
+    color:#5D4037;
+    font-family:'Cinzel', serif;
+    font-size:15px;
+    letter-spacing:0.02em;
+    margin-bottom:8px;
+}
+
+.info-row h4{
+    color:#B8860B;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:19px;
+    margin:2px 0 10px;
+}
+
+.info-row h5{
+    color:#8A7A6B;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:6px;
+}
+
+.info-row p{
+    color:#666;
+    font-size:14.5px;
+    line-height:1.8;
+    white-space:pre-line;
+}
+
+@media(max-width:560px){
+    .info-row{ padding:22px 22px; gap:16px; }
+    .info-icon{ width:38px; height:38px; min-width:38px; font-size:16px; }
+}
+.visitor-card p{ color:#5A5048; line-height:1.85; white-space:pre-line; font-size:14.5px; }
+.visitor-card hr{ border:none; height:1px; background:#E7DDCE; margin:16px 0; }
+
+/* map cta */
+
+.map-box{ text-align:center; margin-top:10px; }
+
+.map-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 38px;
+    background:linear-gradient(135deg,#8B5E3C,#D4AF37);
+    color:#fff;
+    text-decoration:none;
+    font-size:15.5px;
+    font-weight:600;
+    border-radius:50px;
+    transition:.3s;
+    box-shadow:0 12px 25px rgba(62,39,35,.2);
+}
+
+.map-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 32px rgba(62,39,35,.3);
+}
+
+
+.footer{
+    background:#16110d;
+    border-top:2px solid #c89b3c;
+    color:#fff;
+    margin-top:60px;
+    position:relative;
+}
+
+.footer::before{
+    content:"";
+    position:absolute;
+    top:-2px;
+    left:0;
+    right:0;
+    height:2px;
+    background:linear-gradient(90deg, transparent, #d9a441 50%, transparent);
+    opacity:.65;
+}
+
+.footer-container{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.6fr 1fr 1fr 0.8fr;
+    gap:35px;
+    padding:38px 50px;
+}
+
+.footer-box{
+    text-align:left;
+}
+
+.footer-box h2{
+    color:#d9a441;
+    font-size:28px;
+    font-family:Georgia,serif;
+    letter-spacing:.01em;
+    margin:0 0 12px;
+    text-align:left;
+}
+
+.footer-box h3{
+    color:#d9a441;
+    font-size:17px;
+    font-family:Georgia,serif;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin:0 0 16px;
+    text-align:left;
+    position:relative;
+    padding-bottom:10px;
+}
+
+.footer-box h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:32px;
+    height:2px;
+    background:linear-gradient(90deg,#d9a441,rgba(217,164,65,0));
+}
+
+.footer-box p{
+    font-size:14.5px;
+    line-height:1.7;
+    color:#D9CFC0;
+}
+
+.footer-box ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.footer-box ul li{
+    margin-top:10px;
+}
+
+.footer-box ul li a{
+    color:#D9CFC0;
+    text-decoration:none;
+    font-size:14.5px;
+    transition:.25s ease;
+    display:inline-block;
+}
+
+.footer-box ul li a:hover{
+    color:#d9a441;
+    transform:translateX(5px);
+}
+
+.item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:11px 0;
+    font-size:14.5px;
+    color:#D9CFC0;
+}
+
+.item i{
+    width:30px;
+    height:30px;
+    min-width:30px;
+    border:1.5px solid #d9a441;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#d9a441;
+    font-size:12.5px;
+    transition:.25s ease;
+}
+
+.item a{
+    color:#D9CFC0;
+    text-decoration:none;
+    transition:.25s ease;
+}
+
+.item a:hover{ color:#d9a441; }
+.item:hover i{
+    background:#d9a441;
+    color:#16110d;
+    box-shadow:0 0 14px rgba(217,164,65,.45);
+}
+
+.social{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#D9CFC0;
+    text-decoration:none;
+    margin:11px 0;
+    font-size:14.5px;
+    transition:.25s ease;
+}
+
+.social i{
+    width:32px;
+    height:32px;
+    min-width:32px;
+    border:1.5px solid #d9a441;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#d9a441;
+    font-size:13.5px;
+    transition:.25s ease;
+}
+
+.social:hover{
+    color:#d9a441;
+    transform:translateX(5px);
+}
+.social:hover i{
+    background:#d9a441;
+    color:#16110d;
+    box-shadow:0 0 14px rgba(217,164,65,.45);
+}
+
+.copyright{
+    border-top:1px solid rgba(200,155,60,.4);
+    text-align:center;
+    padding:16px;
+    font-size:12.5px;
+    letter-spacing:.03em;
+    color:#B7A78F;
+}
+
+@media(max-width:900px){
+
+.footer-container{
+grid-template-columns:1fr;
+text-align:center;
+padding:34px 30px 6px;
+gap:0;
+}
+
+.footer-box{
+    padding:24px 0;
+    position:relative;
+}
+
+.footer-box + .footer-box::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:56px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, #d9a441, transparent);
+}
+
+.footer-box h3::after{
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.footer-box p{ max-width:280px; margin:0 auto; }
+
+.item,
+.social{
+justify-content:center;
+max-width:280px;
+margin-left:auto;
+margin-right:auto;
+}
+
+}
+
+
+</style>
+
+<body>
+
+{# ============================================================
+   Category icon + label lookup — fully self-contained here so
+   this ONE template works for all 20 categories with zero
+   changes needed in app.py. Add a new category row to BOTH
+   maps below if a new category is introduced later.
+============================================================ #}
+{% set category_icons = {
+    'temple':         'fa-solid fa-gopuram',
+    'church':         'fa-solid fa-church',
+    'mosque':         'fa-solid fa-mosque',
+    'gurudwara':      'fa-solid fa-place-of-worship',
+    'monastery':      'fa-solid fa-place-of-worship',
+    'fort':           'fa-solid fa-chess-rook',
+    'palace':         'fa-solid fa-landmark-dome',
+    'monument':       'fa-solid fa-archway',
+    'museum':         'fa-solid fa-building-columns',
+    'cave':           'fa-solid fa-mountain',
+    'archaeological': 'fa-solid fa-magnifying-glass',
+    'tomb':           'fa-solid fa-monument',
+    'nationalpark':   'fa-solid fa-tree',
+    'wildlife':       'fa-solid fa-paw',
+    'birdsanctuary':  'fa-solid fa-dove',
+    'hillstation':    'fa-solid fa-mountain-city',
+    'valley':         'fa-solid fa-mountain-sun',
+    'waterfall':      'fa-solid fa-cloud-rain',
+    'beach':          'fa-solid fa-umbrella-beach',
+    'island':         'fa-solid fa-water'
+} %}
+{% set category_labels = {
+    'temple':         'Temples',
+    'church':         'Churches',
+    'mosque':         'Mosques',
+    'gurudwara':      'Gurudwaras',
+    'monastery':      'Monasteries',
+    'fort':           'Forts',
+    'palace':         'Palaces',
+    'monument':       'Monuments',
+    'museum':         'Museums',
+    'cave':           'Caves',
+    'archaeological': 'Archaeological Sites',
+    'tomb':           'Tombs',
+    'nationalpark':   'National Parks',
+    'wildlife':       'Wildlife Sanctuaries',
+    'birdsanctuary':  'Bird Sanctuaries',
+    'hillstation':    'Hill Stations',
+    'valley':         'Valleys',
+    'waterfall':      'Waterfalls',
+    'beach':          'Beaches',
+    'island':         'Islands'
+} %}
+{% set cat_icon = category_icons.get(place.category, 'fa-solid fa-landmark') %}
+{% set cat_label = category_labels.get(place.category, 'Explore') %}
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Heritage Odyssey">
+        <h2>Heritage Odyssey</h2>
+    </div>
+
+    <nav>
+        <a href="/home"><i class="fa-solid fa-house"></i> <span class="label">Home</span></a>
+        <a href="/{{ place.category }}"><i class="{{ cat_icon }}"></i> <span class="label">{{ cat_label }}</span></a>
+        <a href="javascript:history.back()" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span class="label">Back</span>
+        </a>
+    </nav>
+
+</header>
+
+<!-- ================= SECTION WAYFINDER ================= -->
+
+<nav class="wayfinder" id="wayfinder">
+    <a href="#history" data-target="history">History</a>
+    {% if place.unesco %}<a href="#unesco" data-target="unesco">UNESCO</a>{% endif %}
+    {% if place.architecture %}<a href="#architecture" data-target="architecture">Architecture</a>{% endif %}
+    <a href="#famous" data-target="famous">Famous For</a>
+    <a href="#visitor" data-target="visitor">Visitor Info</a>
+    <a href="#travel" data-target="travel">Travel</a>
+    <a href="#facts" data-target="facts">Facts</a>
+    <a href="#location" data-target="location">Map</a>
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="arch-frame">
+            <svg viewBox="0 0 150 130" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 128 L10 60 Q75 -5 140 60 L140 128" stroke="#D4AF37" stroke-width="2.5" fill="none" opacity="0.7"/>
+                <path d="M22 128 L22 66 Q75 12 128 66 L128 128" stroke="#D4AF37" stroke-width="1.5" fill="none" opacity="0.45"/>
+                <circle cx="75" cy="16" r="3" fill="#D4AF37" opacity="0.8"/>
+            </svg>
+        </div>
+        <div class="hero-icon">
+            <i class="{{ cat_icon }}"></i>
+        </div>
+
+        <h1>{{ place.place_name }}</h1>
+
+        <p class="loc">
+            <i class="fa-solid fa-location-dot"></i>{{ place.state }}
+        </p>
+
+        {% if place.unesco %}
+        <div class="unesco-tag">
+            <i class="fa-solid fa-award"></i>
+            UNESCO World Heritage Site
+        </div>
+        {% endif %}
+
+    </div>
+
+</section>
+
+<!-- ================= OVERVIEW STRIP ================= -->
+
+<section class="overview">
+
+    <div class="overview-grid">
+
+        {% if place.built_by %}
+        <div class="overview-card">
+            <i class="fa-solid fa-crown"></i>
+            <h3>Built By</h3>
+            <p>{{ place.built_by }}</p>
+        </div>
+        {% endif %}
+
+        {% if place.built_in %}
+        <div class="overview-card">
+            <i class="fa-solid fa-calendar-days"></i>
+            <h3>Built In</h3>
+            <p>{{ place.built_in }}</p>
+        </div>
+        {% endif %}
+
+        <div class="overview-card">
+            <i class="fa-solid fa-location-dot"></i>
+            <h3>State</h3>
+            <p>{{ place.state }}</p>
+        </div>
+
+        <div class="overview-card">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <h3>Address</h3>
+            <p>{{ place.address }}</p>
+        </div>
+
+    </div>
+
+</section>
+
+<div class="container">
+
+    <!-- ================= HISTORY ================= -->
+
+    <section class="section" id="history">
+        <div class="section-title">
+            <div class="num-mark"><i class="fa-solid fa-book-open"></i></div>
+            <h2>History</h2>
+        </div>
+        <div class="content-card">
+            <p>{{ place.history }}</p>
+        </div>
+    </section>
+
+    <!-- ================= UNESCO ================= -->
+
+{% if place.unesco %}
+<section class="section" id="unesco">
+    <div class="section-title">
+        <div class="num-mark">
+            <i class="fa-solid fa-award"></i>
+        </div>
+        <h2>UNESCO Recognition</h2>
+    </div>
+
+    <div class="unesco-card">
+
+        <div class="unesco-header">
+            <i class="fa-solid fa-medal"></i>
+            <h3>UNESCO Status</h3>
+        </div>
+
+        <p>{{ place.unesco }}</p>
+
+    </div>
+</section>
+{% endif %}
+
+    <!-- ================= ARCHITECTURE ================= -->
+
+    {% if place.architecture %}
+    <section class="section" id="architecture">
+        <div class="section-title">
+            <div class="num-mark"><i class="fa-solid fa-building-columns"></i></div>
+            <h2>Architecture</h2>
+        </div>
+        <div class="content-card">
+            <p>{{ place.architecture }}</p>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- ================= FAMOUS FOR ================= -->
+
+    <section class="section" id="famous">
+        <div class="section-title">
+            <div class="num-mark"><i class="fa-solid fa-star"></i></div>
+            <h2>Famous For</h2>
+        </div>
+        <div class="content-card">
+            <p>{{ place.famous_for }}</p>
+        </div>
+    </section>
+
+    <!-- ================= VISITOR INFORMATION ================= -->
+
+    <section class="section" id="visitor">
+        <div class="section-title">
+            <div class="num-mark"><i class="fa-solid fa-user-group"></i></div>
+            <h2>Visitor Information</h2>
+        </div>
+
+        <div class="info-panel">
+
+            <div class="info-row">
+                <div class="info-icon"><i class="fa-regular fa-clock"></i></div>
+                <div>
+                    <h3>Visiting Time</h3>
+                    <p>{{ place.visiting_time }}</p>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+                <div>
+                    <h3>Best Time to Visit</h3>
+                    <h4>{{ place.best_time }}</h4>
+                    <h5>Why this is the best time</h5>
+                    <p>{{ place.reason }}</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= TRAVEL INFORMATION ================= -->
+
+    <section class="section" id="travel">
+        <div class="section-title">
+            <div class="num-mark"><i class="fa-solid fa-route"></i></div>
+            <h2>Travel Information</h2>
+        </div>
+        <div class="visitor-grid">
+
+            <div class="visitor-card">
+                <i class="fa-solid fa-train"></i>
+                <h3>Nearest Railway Station</h3>
+                <p>{{ place.nearest_railway }}</p>
+            </div>
+
+            <div class="visitor-card">
+                <i class="fa-solid fa-plane"></i>
+                <h3>Nearest Airport</h3>
+                <p>{{ place.nearest_airport }}</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= INTERESTING FACTS ================= -->
+
+    <section class="section" id="facts">
+        <div class="section-title">
+            <div class="num-mark"><i class="fa-solid fa-lightbulb"></i></div>
+            <h2>Interesting Facts</h2>
+        </div>
+        <div class="content-card">
+            <p>{{ place.interesting_facts }}</p>
+        </div>
+    </section>
+
+    <!-- ================= GOOGLE MAP ================= -->
+
+    <section class="section" id="location">
+        <div class="section-title">
+            <div class="num-mark"><i class="fa-solid fa-map-location-dot"></i></div>
+            <h2>Location</h2>
+        </div>
+        <div class="map-box">
+            <a href="{{ place.google_maps }}" target="_blank" class="map-btn">
+                <i class="fa-solid fa-location-dot"></i>
+                Open in Google Maps
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Brand -->
+        <div class="footer-box">
+            <h2>Heritage Odyssey</h2>
+
+            <p>Discover • Explore • Preserve</p>
+            <p>India's Rich Heritage</p>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-box">
+            <h3>Contact</h3>
+
+            <div class="item">
+                <i class="fas fa-envelope"></i>
+                <span>heritageodyssey26@gmail.com</span>
+            </div>
+
+            <div class="item">
+                <i class="fas fa-phone"></i>
+                <span>+91 9876543210</span>
+            </div>
+
+            <div class="item">
+                <i class="fas fa-location-dot"></i>
+                <span>India</span>
+            </div>
+
+        </div>
+
+        <!-- Follow Us -->
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+
+            <a href="https://www.facebook.com/profile.php?id=61592016778475"
+               class="social"
+               target="_blank">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook</span>
+            </a>
+
+            <a href="https://www.instagram.com/her_itage2026/"
+               class="social"
+               target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+
+        </div>
+
+        <!-- About -->
+        <div class="footer-box">
+            <h3>About</h3>
+
+            <ul>
+                <li>
+                    <a href="{{ url_for('home') }}#about">
+                        About Us
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 Heritage Odyssey | All Rights Reserved
+    </div>
+
+</footer>
+
+<script>
+// Scrollspy: highlight the active section in the wayfinder as the user scrolls
+(function(){
+    var links = document.querySelectorAll('.wayfinder a');
+    var sections = Array.from(links).map(function(a){
+        return document.getElementById(a.dataset.target);
+    }).filter(Boolean);
+
+    function onScroll(){
+        var pos = window.scrollY + 160;
+        var current = sections[0];
+        sections.forEach(function(sec){
+            if(sec.offsetTop <= pos) current = sec;
+        });
+        links.forEach(function(a){
+            a.classList.toggle('active', a.dataset.target === current.id);
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+})();
+</script>
+
+</body>
+
+</html>

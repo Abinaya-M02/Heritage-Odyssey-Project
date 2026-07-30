@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Heritage Odyssey</title>
+
+<!-- 👇 Google Font inga paste pannu -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.logo img{
+    width:110px;
+    height:110px;
+    object-fit:contain;
+}
+
+.logo h1{
+    color:#4b2e20;
+    font-size:42px;
+    font-family: 'Cinzel', serif;
+}
+    
+
+.logo p{
+    color:#666;
+    font-style:italic;
+    margin-top:5px;
+}
+
+/* ================= SEARCH ================= */
+
+.search-box{
+    width:420px;
+    position:relative;
+    margin:0;
+    border:none;
+}
+
+.search-box input{
+    width:100%;
+    padding:15px 20px 15px 55px;
+    border-radius:35px;
+    border:2px solid #8B5E3C;
+    font-size:18px;
+    outline:none;
+}
+
+.back-link,
+.back-link:link,
+.back-link:visited,
+.back-link:hover,
+.back-link:active,
+.back-link:focus{
+    text-decoration:none !important;
+    display:inline-block;
+    margin:25px 40px 0;
+    color:#8B5E3C;
+    font-weight:bold;
+    outline:none;
+}
+
+.search-box span{
+    position:absolute;
+    left:20px;
+    top:13px;
+    font-size:24px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile{
+    position:relative;
+}
+
+.profile-btn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#8B5E3C;
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.profile-menu{
+    display:none;
+    position:absolute;
+    top:60px;
+    right:0;
+    width:240px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+    overflow:visible;
+    z-index:9999;
+}
+
+.user-info{
+    padding:18px;
+    text-align:center;
+}
+
+.user-info h3{
+    color:#4b2e20;
+    margin-bottom:5px;
+}
+
+.user-info p{
+    color:gray;
+    font-size:14px;
+}
+
+.profile-menu hr{
+    border:none;
+    border-top:1px solid #ddd;
+}
+
+.profile-menu a{
+    display:block;
+    padding:15px;
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+}
+
+.profile-menu a:hover{
+    background:#f3f3f3;
+}
+
+/* ================= HERO ================= */
+.hero{
+    width:95%;
+    height:380px;
+    margin:30px auto;
+    border-radius:20px;
+    overflow:hidden;
+
+    background-image:url("{{ url_for('static', filename='banner.png') }}");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    position:relative;
+}
+/* Dark overlay for better text visibility */
+.hero::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+    z-index:1;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:600px;
+    margin-left:40px;
+}
+.hero h1{
+    font-family:'Playfair Display', serif;
+    font-size:58px;
+
+    background:linear-gradient(90deg,#FFD700,#FFF8DC,#DAA520);
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.hero p{
+    font-size:22px;
+    line-height:1.6;
+    max-width:650px;
+    background:linear-gradient(90deg,#FFD700,#FFF8DC,#DAA520);
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:2px 2px 5px rgba(0,0,0,0.5);
+
+}
+
+/* ================= CATEGORY ================= */
+
+.category-section{
+
+width:90%;
+margin:50px auto;
+
+}
+
+.category-section h2{
+
+color:#4b2e20;
+font-size:34px;
+margin-bottom:20px;
+
+}
+
+/* ================= CATEGORY ================= */
+
+.category-section{
+
+    width:90%;
+    margin:50px auto;
+
+}
+
+.category-section h2{
+
+    color:#4B2E20;
+    font-size:34px;
+    margin-bottom:20px;
+
+}
+
+.cards{
+
+    display:flex;
+    gap:25px;
+    overflow-x:auto;
+    padding-bottom:15px;
+    scroll-behavior:smooth;
+
+}
+
+.cards::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.cards::-webkit-scrollbar-thumb{
+
+    background:#8B5E3C;
+    border-radius:20px;
+
+}
+
+.card{
+
+    min-width:220px;
+    width:220px;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    transition:.3s;
+    cursor:pointer;
+
+    text-decoration:none;
+    display:block;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.card img{
+
+    width:100%;
+    height:150px;
+    object-fit:cover;
+
+}
+
+.card h3{
+
+    text-align:center;
+    padding:18px;
+    color:#4B2E20;
+
+}
+
+
+
+/* ================= ABOUT (unchanged — kept exactly as-is) ================= */
+
+/* ================= ABOUT (white card, now with its own brown backdrop) ================= */
+
+.about-wrapper{
+    background:#341c10;
+    padding:60px 8%;
+}
+
+.about h2{
+    text-align:center;
+    font-size:36px;
+    color:#8B5E3C;
+    margin-bottom:20px;
+    font-family:'Playfair+Display';
+}
+
+.about{
+    width:90%;
+    max-width:1100px;
+    margin:0 auto;
+    padding:40px;
+    background:#fff;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.about p{
+    font-size:18px;
+    line-height:1.8;
+    color:#444;
+    text-align:justify;
+    font-family:'serif';
+}
+
+/* ================= FOOTER (new design) ================= */
+
+.footer{
+    background:#26150d;
+    color:#fff;
+    margin-top:0;
+    position:relative;
+}
+
+.footer-container{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.6fr 1fr 1fr 0.8fr;
+    gap:35px;
+    padding:38px 50px;
+}
+
+.footer-box{
+    text-align:left;
+}
+
+.footer-box h2{
+    color:#d9a441;
+    font-size:28px;
+    font-family:Georgia,serif;
+    letter-spacing:.01em;
+    margin:0 0 12px;
+    text-align:left;
+}
+
+.footer-box h3{
+    color:#d9a441;
+    font-size:17px;
+    font-family:Georgia,serif;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin:0 0 16px;
+    text-align:left;
+    position:relative;
+    padding-bottom:10px;
+}
+
+.footer-box h3::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:32px;
+    height:2px;
+    background:linear-gradient(90deg,#d9a441,rgba(217,164,65,0));
+}
+
+.footer-box p{
+    font-size:14.5px;
+    line-height:1.7;
+    color:#D9CFC0;
+}
+
+.footer-box ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.footer-box ul li{
+    margin-top:10px;
+}
+
+.footer-box ul li a{
+    color:#D9CFC0;
+    text-decoration:none;
+    font-size:14.5px;
+    transition:.25s ease;
+    display:inline-block;
+}
+
+.footer-box ul li a:hover{
+    color:#d9a441;
+    transform:translateX(5px);
+}
+
+.item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:11px 0;
+    font-size:14.5px;
+    color:#D9CFC0;
+}
+
+.item i{
+    width:30px;
+    height:30px;
+    min-width:30px;
+    border:1.5px solid #d9a441;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#d9a441;
+    font-size:12.5px;
+    transition:.25s ease;
+}
+
+.item a{
+    color:#D9CFC0;
+    text-decoration:none;
+    transition:.25s ease;
+}
+
+.item a:hover{ color:#d9a441; }
+.item:hover i{
+    background:#d9a441;
+    color:#16110d;
+    box-shadow:0 0 14px rgba(217,164,65,.45);
+}
+
+.social{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#D9CFC0;
+    text-decoration:none;
+    margin:11px 0;
+    font-size:14.5px;
+    transition:.25s ease;
+}
+
+.social i{
+    width:32px;
+    height:32px;
+    min-width:32px;
+    border:1.5px solid #d9a441;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#d9a441;
+    font-size:13.5px;
+    transition:.25s ease;
+}
+
+.social:hover{
+    color:#d9a441;
+    transform:translateX(5px);
+}
+.social:hover i{
+    background:#d9a441;
+    color:#16110d;
+    box-shadow:0 0 14px rgba(217,164,65,.45);
+}
+
+.copyright{
+    border-top:1px solid rgba(200,155,60,.4);
+    text-align:center;
+    padding:16px;
+    font-size:12.5px;
+    letter-spacing:.03em;
+    color:#B7A78F;
+}
+
+@media(max-width:900px){
+
+.footer-container{
+grid-template-columns:1fr;
+text-align:center;
+padding:34px 30px 6px;
+gap:0;
+}
+
+.footer-box{
+    padding:24px 0;
+    position:relative;
+}
+
+.footer-box + .footer-box::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:56px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, #d9a441, transparent);
+}
+
+.footer-box h3::after{
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.footer-box p{ max-width:280px; margin:0 auto; }
+
+.item,
+.social{
+justify-content:center;
+max-width:280px;
+margin-left:auto;
+margin-right:auto;
+}
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="{{ url_for('static', filename='logo.png') }}">
+
+<div>
+<h1>Heritage Odyssey</h1>
+<p>Journey Through India's Timeless Heritage</p>
+</div>
+
+</div>
+
+<form class="search-box" action="/search" method="GET">
+
+<span>🔍</span>
+
+<input type="text"
+name="q"
+placeholder="Search Heritage Place"
+required>
+
+</form>
+
+
+<div class="profile">
+
+<button class="profile-btn"
+onclick="toggleMenu()">
+👤
+</button>
+
+<div class="profile-menu"
+id="profileMenu">
+
+<div class="user-info">
+
+<h3>{{ session['name'] }}</h3>
+<p>{{ session['email'] }}</p>
+
+</div>
+
+<hr>
+
+<a href="/logout">🚪 Logout</a>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+    <div class="hero-content">
+        <h1>Explore India's Heritage</h1>
+
+        <p>
+            Discover temples, churches, forts, palaces,
+            museums, monuments and breathtaking natural wonders.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- ================= RELIGIOUS HERITAGE ================= -->
+
+<section class="category-section">
+
+    <h2>🛕 Religious Heritage</h2>
+
+    <div class="cards">
+
+        <a href="/temple" class="card">
+            <img src="{{ url_for('static', filename='temple.jpg') }}">
+            <h3>Temple</h3>
+        </a>
+
+        <a href="/church" class="card">
+            <img src="{{ url_for('static', filename='church.png') }}">
+            <h3>Church</h3>
+        </a>
+
+         <a href="/mosque" class="card">
+            <img src="{{ url_for('static', filename='mosque.png') }}" alt="Mosque">
+            <h3>Mosque</h3>
+        </a>
+
+
+        <a href="/gurudwara" class="card">
+            <img src="{{ url_for('static', filename='gurudwara.png') }}" alt="Gurudwara">
+            <h3>Gurudwara</h3>
+        </a>
+
+        <a href="/monastery" class="card">
+            <img src="{{ url_for('static', filename='monastery.jpg') }}" alt="Monastery">
+            <h3>Monastery</h3>
+        </a>
+        
+
+    </div>
+
+</section>
+
+
+<!-- ================= HISTORICAL HERITAGE ================= -->
+
+<section class="category-section">
+
+    <h2>🏰 Historical Heritage</h2>
+
+    <div class="cards">
+
+        <a href="/fort" class="card">
+            <img src="{{ url_for('static', filename='fort.png') }}" alt="Fort">
+            <h3>Fort</h3>
+        </a>
+
+        <a href="/palace" class="card">
+            <img src="{{ url_for('static', filename='palace.png') }}" alt="Palace">
+            <h3>Palace</h3>
+        </a>
+
+        <a href="/monument" class="card">
+            <img src="{{ url_for('static', filename='monument.jpg') }}" alt="Monument">
+            <h3>Monument</h3>
+        </a>
+
+        <a href="/museum" class="card">
+            <img src="{{ url_for('static', filename='museum.jpg') }}" alt="Museum">
+            <h3>Museum</h3>
+        </a>
+
+        <a href="/cave" class="card">
+            <img src="{{ url_for('static', filename='cave.jpg') }}" alt="Cave">
+            <h3>Cave</h3>
+        </a>
+
+        <a href="/archaeological" class="card">
+            <img src="{{ url_for('static', filename='archaeological.jpg') }}" alt="Archaeological Site">
+            <h3>Archaeological Site</h3>
+        </a>
+
+        <a href="/tomb" class="card">
+            <img src="{{ url_for('static', filename='tomb.png') }}" alt="Tomb">
+            <h3>Tomb</h3>
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ================= NATURAL HERITAGE ================= -->
+
+<section class="category-section">
+
+    <h2>🌿 Natural Heritage</h2>
+
+    <div class="cards">
+
+        <a href="/nationalpark" class="card">
+            <img src="{{ url_for('static', filename='nationalpark.jpg') }}" alt="National Park">
+            <h3>National Park</h3>
+        </a>
+
+        <a href="/wildlife" class="card">
+            <img src="{{ url_for('static', filename='wildlife.jpg') }}" alt="Wildlife Sanctuary">
+            <h3>Wildlife Sanctuary</h3>
+        </a>
+
+        <a href="/birdsanctuary" class="card">
+            <img src="{{ url_for('static', filename='birdsanctuary.jpg') }}" alt="Bird Sanctuary">
+            <h3>Bird Sanctuary</h3>
+        </a>
+
+        <a href="/hillstation" class="card">
+            <img src="{{ url_for('static', filename='hillstation.jpg') }}" alt="Hill Station">
+            <h3>Hill Station</h3>
+        </a>
+
+        <a href="/valley" class="card">
+            <img src="{{ url_for('static', filename='valley.jpg') }}" alt="Valley">
+            <h3>Valley</h3>
+        </a>
+
+      <a href="/waterfall" class="card">
+            <img src="{{ url_for('static', filename='waterfall.jpg') }}" alt="Waterfall">
+            <h3>Waterfall</h3>
+        </a>
+
+        <a href="/beach" class="card">
+            <img src="{{ url_for('static', filename='beach.jpg') }}" alt="Beach">
+            <h3>Beach</h3>
+        </a>
+
+        <a href="/island" class="card">
+            <img src="{{ url_for('static', filename='island.jpg') }}" alt="Island">
+            <h3>Island</h3>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT (white card on its own brown backdrop) ================= -->
+
+<div class="about-wrapper">
+    <section id="about" class="about">
+
+        <h2>About Heritage Odyssey</h2>
+
+        <p>
+            <strong>Heritage Odyssey</strong> is an Indian Heritage Information System
+            designed to help users discover and explore India's rich cultural and
+            historical heritage. The platform provides information about UNESCO World
+            Heritage Sites, temples, churches, forts, palaces, museums, monuments,
+            and natural heritage across the country.
+        </p>
+
+        <p>
+            It also helps travelers plan their journeys by offering heritage
+            information in one place, making it easier to explore famous destinations,
+            learn about their history, and choose places to visit. Heritage Odyssey
+            aims to promote India's cultural legacy while providing a simple and
+            user-friendly travel experience.
+        </p>
+
+    </section>
+</div>
+
+
+<!-- ================= FOOTER (new design, replaces the old plain one) ================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Brand -->
+        <div class="footer-box">
+            <h2>Heritage Odyssey</h2>
+
+            <p>Discover • Explore • Preserve</p>
+            <p>India's Rich Heritage</p>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-box">
+            <h3>Contact</h3>
+
+            <div class="item">
+                <i class="fas fa-envelope"></i>
+                <span>heritageodyssey26@gmail.com</span>
+            </div>
+
+            <div class="item">
+                <i class="fas fa-phone"></i>
+                <span>+91 9876543210</span>
+            </div>
+
+            <div class="item">
+                <i class="fas fa-location-dot"></i>
+                <span>India</span>
+            </div>
+
+        </div>
+
+        <!-- Follow Us -->
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+
+            <a href="https://www.facebook.com/profile.php?id=61592016778475"
+               class="social"
+               target="_blank">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook</span>
+            </a>
+
+            <a href="https://www.instagram.com/her_itage2026/"
+               class="social"
+               target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+
+        </div>
+
+        <!-- About -->
+        <div class="footer-box">
+            <h3>Privacy Policy</h3>
+
+            <ul>
+                <li>
+                    
+                    <p>
+At Heritage Odyssey, We collect only basic information required for using the website.
+Your personal information will not be shared with third parties.</p>
+
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 Heritage Odyssey | All Rights Reserved
+    </div>
+
+</footer>
+
+<script>
+
+function toggleMenu(){
+
+let menu=document.getElementById("profileMenu");
+
+if(menu.style.display=="block"){
+menu.style.display="none";
+}
+else{
+menu.style.display="block";
+}
+
+}
+
+window.onclick=function(e){
+
+if(!e.target.closest(".profile")){
+
+document.getElementById("profileMenu").style.display="none";
+
+}
+
+}
+
+</script>
+
+
+</body>
+</html>
