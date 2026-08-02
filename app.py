@@ -1,19 +1,22 @@
 from flask import Flask, render_template, request, session, redirect
+import os
 import mysql.connector
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = "heritage123"
 
-
 # Database Connection
 def get_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="AbiNaya@4002",
-        database="heritage_db"
+        host=os.getenv("DB_HOST"),
+        port=int(os.getenv("DB_PORT")),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME")
     )
-
 
 # ---------------- SIGN UP ----------------
 
@@ -364,4 +367,7 @@ def search():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000))
+    )
