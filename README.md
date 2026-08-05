@@ -18,11 +18,14 @@ Places are organized under three main heritage types:
 - **🌿 Natural Heritage** – Valleys, Waterfalls, Wildlife Sanctuaries
 
 Each sub-category showcases curated heritage places with images and details.
+
 ## 🛠️ Tech Stack
+- **Frontend:** HTML5, CSS3, JavaScript
 - **Backend:** Python, Flask
-- **Frontend:** HTML, CSS, JavaScript
-- **Database:** MySQL
-- 
+- **Database:** TiDB Cloud (MySQL Compatible)
+- **Version Control:** Git, GitHub
+- **Deployment:** Render
+  
 ## 🚀 Getting Started
 1. Clone the repository
    git clone https://github.com/Abinaya-M02/Heritage-Odyssey-Project.git
